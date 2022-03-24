@@ -1,15 +1,24 @@
 version: "3"
 services:
   golang:
-    container_name: golang
-    image: jinostroza/golang:1.0.2
-    build: ./golang
-    working_dir: /work
-    entrypoint: /bin/sh
+    container_name: golang-neo
+    image: jinostroza/golang:1.0.10
+    build:
+      #construyendo el ambiente dev
+      context: ./golang
+      target: dev
+      #construyendo el ambiente dev
+      # context: ./golang
+      # target: build
+      #construyendo el ambiente prod
+      # context: ./golang
+      # target: prod
+    # working_dir: /work #comentar en multistage
+    # entrypoint: /bin/sh #comentar en multistage
     stdin_open: true
     tty: true
-    volumes:
-    - ./golang/src/:/work
+    # volumes: #comentar en multistage
+    # - ./golang/src/:/work #comentar en multistage
     ports:
       - 5001:5000
 
